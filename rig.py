@@ -5,7 +5,7 @@ import numpy as np
 #print("dlib-",dlib.__version__,"cv2-",cv2.__version__,"numpy-",np.__version__)
 import random
 
-class SimpleOperator(bpy.types.Operator):
+class ArturRig(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "object.simple_operator"
     bl_label = "Artur AI rig"
@@ -126,12 +126,12 @@ def draw_func(self, context):
     
 
 def register():
-    bpy.utils.register_class(SimpleOperator)
+    bpy.utils.register_class(ArturRig)
     bpy.types.VIEW3D_HT_header.prepend(draw_func)
 
 
 def unregister():
-    bpy.utils.unregister_class(SimpleOperator)
+    bpy.utils.unregister_class(ArturRig)
     bpy.types.VIEW3D_HT_header.remove(draw_func)
 
 
