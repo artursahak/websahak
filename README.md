@@ -1,4 +1,4 @@
-# Blender 3D human pose estimation
+# Blender 3D human pose estimation by Artur Sahakyan 
 ## 1.Note that you need to install dlib. For that you need to have Visual Studio 2019 and CMake . ``pip install dlib``
 ### 2.Secondly , you need to install opencv. `pip install opencv-contrib-python`
 #### 3.Thirdly, you need to install numpy. 
