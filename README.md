@@ -6,6 +6,7 @@
 ![alt text](https://github.com/artursahak/websahak/blob/master/Output-Skeleton.jpg)
 ![alt text](https://github.com/artursahak/websahak/blob/master/orb-keypoints.jpg)
 ![alt text](https://github.com/artursahak/websahak/blob/master/output-edges.jpg)
+![alt text](https://github.com/artursahak/websahak/blob/master/objects.PNG)
 
 
 
