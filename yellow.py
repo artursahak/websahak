@@ -173,6 +173,13 @@ class ObjectMoveX(bpy.types.Operator):
         
         #footL.head = (shinLX,0,shinLZ)
         #footL.tail = (shinLX_tail,0,shinLZ_tail)
+        toeL = arm.edit_bones['toe.L']
+        toeL.tail.x += 0.12
+        toeL.head.x += 0.12
+        
+        heelL = arm.edit_bones['heel.02.L']
+        heelL.tail.x += 0.12
+        heelL.head.x += 0.12
         
         cv2.imwrite('C:\wheels\Output-Keypoints.jpg', frameCopy)
         cv2.imwrite('C:\wheels\Output-Skeleton.jpg', frame)
