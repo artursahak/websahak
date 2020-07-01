@@ -4,10 +4,27 @@ import bpy
 import pandas as pd
 import numpy as np
 import mathutils
+import math
 
 path = "/home/artur/Documents/coords/"
-coords=pd.read_csv(path+'points.csv')
 
+def import_obj():
+    model_name = "2015-01-raw"
+    file_loc = path+model_name+'.obj'
+    imported_object = bpy.ops.import_scene.obj(filepath=file_loc)
+    obj_object = bpy.context.selected_objects[0] ####<--Fix
+    obj_object.scale = (0.015,0.015,0.015)
+    obj_object.rotation_euler[2]=math.pi
+    for obj in bpy.context.selected_objects:
+        obj.name = "Model"
+        global global_model
+        global_model = obj.name
+    bpy.ops.object.select_all(action='DESELECT')
+
+import_obj()
+
+#print('Imported name: ', obj_object.name)
+coords=pd.read_csv(path+'points.csv')
 
 coordX = []
 coordY = []
@@ -29,7 +46,7 @@ def initialize_metarig():
     bpy.ops.object.armature_basic_human_metarig_add()
     bpy.context.object.data.show_names = True
     skeleton = bpy.data.objects["metarig"]
-    vec = mathutils.Vector((0.0, 0.0, -0.9))
+    vec = mathutils.Vector((0.34, 0.0, -0.65))
     inv = skeleton.matrix_world.copy()
     inv.invert()
 # vec aligned to local axis
@@ -67,14 +84,18 @@ def poseTail(metarig_name,blender_pose):
     if metarig_name == "foot.L":
         metarig_pose.tail.x = coordX[blender_pose]
         metarig_pose.tail.y = coordY[blender_pose] + 0.3
-        metarig_pose.tail.z = coordZ[blender_pose] - 0.2
+        metarig_pose.tail.z = coordZ[blender_pose] - 0.1
     elif metarig_name == "toe.L":
         metarig_pose.tail.x = coordX[blender_pose]
         metarig_pose.tail.y = coordY[blender_pose]+0.1
-        metarig_pose.tail.z = coordZ[blender_pose]-0.1
+        metarig_pose.tail.z = coordZ[blender_pose]-0.09
+    elif metarig_name == "forearm.L":
+        metarig_pose.tail.x = coordX[blender_pose]
+        metarig_pose.tail.y = coordY[blender_pose]+0.2
+        metarig_pose.tail.z = coordZ[blender_pose]          
     elif metarig_name == "hand.L":
         metarig_pose.tail.x = coordX[blender_pose]
-        metarig_pose.tail.y = coordY[blender_pose]+0.1
+        metarig_pose.tail.y = coordY[blender_pose]+0.3
         metarig_pose.tail.z = coordZ[blender_pose]-0.1
     else:
         metarig_pose.tail.x = coordX[blender_pose]
@@ -96,6 +117,15 @@ poseTail("foot.L",13)
 poseTail("toe.L",13)
 
 bpy.ops.object.mode_set(mode='OBJECT')
+
+objects = bpy.data.objects
+objects['metarig'].select_set(True)
+objects[global_model].select_set(True)
+        #a.parent = b
+
+bpy.ops.object.parent_set(type='ARMATURE_AUTO')
+
+
 
 
 
