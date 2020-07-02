@@ -41,7 +41,9 @@ def import_obj():
 import_obj()
 
 #print('Imported name: ', obj_object.name)
-coords=pd.read_csv(path+'points.csv')
+excel_name = sys.argv[5]
+
+coords=pd.read_csv(os.path.join(path, excel_name+".csv"))
 
 coordX = []
 coordY = []
@@ -66,8 +68,11 @@ def initialize_metarig():
     vec = mathutils.Vector((0.0, 0.0, 0.52))
     inv = skeleton.matrix_world.copy()
     inv.invert()
+    print(inv)
+
 # vec aligned to local axis
     vec_rot = vec @ inv
+	
     skeleton.location = skeleton.location + vec_rot
 
 initialize_metarig()
