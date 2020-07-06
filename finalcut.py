@@ -13,8 +13,8 @@ for eachArg in sys.argv:
 
 #print(sys.path)
 
-path = "/home/artur/Documents/coords/"
-sys.path.append(path)
+path = "C:/wheels/"
+#sys.path.append(path)
 
 print(sys.path)
 #2015-01-raw
@@ -105,15 +105,15 @@ def poseTail(metarig_name,blender_pose):
         metarig_pose.tail.z = coordZ[blender_pose]
     elif metarig_name == "foot.L":
         metarig_pose.tail.x = coordX[blender_pose]
-        metarig_pose.tail.y = coordY[blender_pose] + 0.3
-        metarig_pose.tail.z = coordZ[blender_pose] - 0.1
+        metarig_pose.tail.y = coordY[blender_pose] 
+        metarig_pose.tail.z = coordZ[blender_pose] 
     elif metarig_name == "toe.L":
         metarig_pose.tail.x = coordX[blender_pose]
-        metarig_pose.tail.y = coordY[blender_pose]+0.1
-        metarig_pose.tail.z = coordZ[blender_pose]-0.09
+        metarig_pose.tail.y = coordY[blender_pose]
+        metarig_pose.tail.z = coordZ[blender_pose]
     elif metarig_name == "forearm.L":
         metarig_pose.tail.x = coordX[blender_pose]
-        metarig_pose.tail.y = coordY[blender_pose]+0.04
+        metarig_pose.tail.y = coordY[blender_pose]
         metarig_pose.tail.z = coordZ[blender_pose]          
     elif metarig_name == "hand.L":
         metarig_pose.tail.x = coordX[blender_pose]
