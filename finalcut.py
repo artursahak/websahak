@@ -31,7 +31,7 @@ def import_obj():
     imported_object = bpy.ops.import_scene.obj(filepath=file_loc)
     obj_object = bpy.context.selected_objects[0] ####<--Fix
     obj_object.scale = (0.015,0.015,0.015)
-    obj_object.rotation_euler[2]=math.pi
+    #obj_object.rotation_euler[2]=math.pi
     for obj in bpy.context.selected_objects:
         obj.name = "Model"
         global global_model
@@ -57,7 +57,7 @@ for x, y, z in coords.values:
     new_z = z + 0.8
     #bpy.ops.mesh.primitive_uv_sphere_add(radius=0.1, enter_editmode=False, location=(x, y, z))
     coordX.append(x)
-    coordY.append(y)
+    coordY.append(-y)
     coordZ.append(new_z)
     #bpy.ops.mesh.primitive_uv_sphere_add(radius=0.05,enter_editmode=False,location=(x,y,new_z))
 
@@ -65,6 +65,7 @@ def initialize_metarig():
     bpy.ops.object.armature_basic_human_metarig_add()
     bpy.context.object.data.show_names = True
     skeleton = bpy.data.objects["metarig"]
+    #skeleton.rotation_euler[2]=math.pi
     vec = mathutils.Vector((0.0, 0.0, 0.52))
     inv = skeleton.matrix_world.copy()
     inv.invert()
@@ -101,7 +102,7 @@ def poseTail(metarig_name,blender_pose):
     metarig_pose = arm.edit_bones[metarig_name]
     if metarig_name == "spine.006":
         metarig_pose.tail.x = coordX[blender_pose]
-        metarig_pose.tail.y = coordY[blender_pose] - 0.3
+        metarig_pose.tail.y = coordY[blender_pose] 
         metarig_pose.tail.z = coordZ[blender_pose]
     elif metarig_name == "foot.L":
         metarig_pose.tail.x = coordX[blender_pose]
